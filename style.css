@@ -1,0 +1,212 @@
+.box{
+    width:50px;
+    height: 50px;
+    margin:0px;
+    padding:0;
+    border:solid black 1px;
+    
+}
+.grid, #grid{
+    display:grid;
+    align-content:center;
+    justify-content:center;
+    width:400px;
+    height:400px;
+    margin:auto;
+    margin-top:50px;
+    grid-template-rows: repeat(8, 1fr);
+    grid-template-columns: repeat(8, 1fr);
+
+    
+}
+#colors{
+    display:grid;
+    grid-template-columns: repeat(8,30px);
+    margin-top:65px;
+     align-content:center;
+    justify-content:center;
+    
+}
+.colorBox{
+    width: 30px;
+    height:30px;
+    border: solid black 1px;
+    float:left;
+}
+
+.InputDiv{
+     display:flex;
+    justify-content: center;
+    margin-top:20px;
+}
+#black{
+    background-color:black;
+}
+#red{
+    background-color:red
+}
+#darkred{
+    background-color: darkred;
+}
+#white{
+    background-color:white;
+}
+#blue{
+    background-color:blue;
+}
+#darkblue{
+     background-color:darkblue;
+ }
+#purple{
+    background-color:purple;
+}
+#green{
+    background-color:green;
+}
+
+#orange{
+    background-color:orange;
+}
+#yellow{
+    background-color:yellow;
+}
+#lightblue{
+    background-color:lightblue;
+}
+
+.navigation{
+    margin:10px 30px;
+    justify-content: center;
+}
+.NavList{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.NavList li{
+    float:left;
+    padding: 10px;
+}
+.backTop{
+    text-align:center;
+    margin-top: 50px;
+}
+.backTop a{
+    border:solid 1px black;
+    padding: 5px;
+    text-decoration: none;
+    color:black;
+}
+.backTop a:hover{
+    background-color:silver;
+}
+.homeLink {
+    margin:20px;
+}
+.homeLink a{
+    border: 1px solid black;
+    padding:10px;
+    text-decoration: none;
+    color:black;
+}
+.homeLink a:hover{
+    background-color:silver;
+}
+.createLink{
+    margin:20px;
+}
+.createLink a{
+    border: 1px solid black;
+    padding:10px;
+    text-decoration: none;
+    color:black;
+}
+.createLink a:hover{
+    background-color:silver;
+}
+.successNav{
+    display:flex;
+    float:left;
+}
+.gridContainer{
+    margin:auto;
+}
+.gridsDiv{
+    display:grid;
+    grid-template-columns:0.8fr 0.8fr;
+}
+.gridSubtxt{
+    display: grid;
+    margin: 12px 0;
+}
+.profTitle{
+    text-align:center;
+    font-size:20px;
+}
+
+.like, .dislike {
+    width:16px;
+}
+.likesDiv button, .dislikesDiv button{
+    border:none;
+    background-color: white;
+}
+.likesFormContainer{
+    display:grid;
+    grid-column-gap: 2px;
+    grid-template-columns: 0.05fr 0.05fr;
+    grid-template-rows: 1fr;
+
+}
+.GridSubButts{
+    display: grid;
+    width:50%;
+    grid-template-columns: 0.7fr 0.7fr 0.7fr;
+    grid-template-rows: 1fr 1fr;
+    grid-row-gap: 4px;
+    grid-column-gap: 2px;
+    margin:auto;
+    padding-top:10px;
+
+}
+.GridSubButts button{
+    margin:auto;
+    width:100%;
+    text-align:center;
+    height:100%;
+    line-height: 1px;
+
+}
+.commentsContainer{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 15px;
+    margin: 10px;
+}
+.commentContainer {
+    border: solid 1px black;
+    width:65%;
+}
+.commentBody{
+    border-top: solid 1px black;
+}
+.addCommentContainer{
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
+    margin:10px;
+}
+.addCommentContainer textarea{
+    resize: none;
+    width:10%;
+    height:10%;
+}
+.addCommentForm{
+    display:grid;
+}
+.NewCommentClick, .hide{
+    cursor:pointer;
+}
+.NewCommentClick:hover, .hide:hover{
+    color:dimgrey;
+}

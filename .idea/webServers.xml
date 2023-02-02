@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="adef8266-bccb-4b9e-89b3-b09bd16560f0" name="Grid Site WebSvr" url="http://access946216664.webspace-data.io">
+        <fileTransfer accessType="SFTP" sshConfigId="46748646-d028-4455-a34f-00e52062f929" sshConfig="Grid Site WebSvr">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

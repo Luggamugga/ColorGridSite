@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" connectionConfig="{&quot;serverAliveInterval&quot;:300}" id="46748646-d028-4455-a34f-00e52062f929" customName="Grid Site WebSvr" nameFormat="CUSTOM" username="u110679445" useOpenSSHConfig="true">
+        <option name="customName" value="Grid Site WebSvr" />
+      </sshConfig>
+    </configs>
+  </component>
+</project>
