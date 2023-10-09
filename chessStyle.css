@@ -1,0 +1,47 @@
+.chessMain{
+    display:flex;
+    justify-content: center;
+    flex-direction:column;
+    align-items:center;
+}
+.chessGrid{
+    display:grid;
+    grid-template-rows: repeat(8,1fr);
+    grid-template-columns: repeat(8,1fr);
+    margin: 0;
+    text-align: center;
+    width: 60%;
+    height: 600px;
+}
+.chessGridBox{
+    border:solid 1px black;
+}
+.chessPiece{
+    font-size: xxx-large;
+    text-align: center;
+    vertical-align: center;
+    display:block;
+}
+.chessPieceWhite{
+    color:indianred;
+}
+.chessPieceBlack{
+    color:darkred;
+}
+.black{
+    background-color:black;
+}
+.white{
+    background-color:white;
+}
+.turnSignalBlack, .turnSignalWhite{
+    display:none;
+    width:60%;
+    height:20px;
+    background-color:grey;
+}
+.chessTitle{
+    font-size: 20px;
+    font-family:Times,sans-serif;
+    margin: 5px 0;
+}

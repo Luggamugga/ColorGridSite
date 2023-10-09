@@ -9,7 +9,8 @@
     </form></div>
     <?php
     if(!empty($_POST["usrname"])){
-       echo login($_POST["usrname"],$_POST["passwd"]);}
+       echo login($_POST["usrname"],$_POST["passwd"]);
+    }
     ?>
 
 <?php include "footer.php" ?>

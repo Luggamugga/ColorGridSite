@@ -27,6 +27,11 @@ function checkUserExists($usrname)
         return false;
     }
 }
+function getUserIdByName($username){
+    global $mysqli;
+    $query = sprintf("SELECT id FROM user WHERE usrname=%s",$username);
+    return mysqli_fetch_assoc($mysqli->query($query));
+}
 
 function login($usrname, $passwd)
 {
@@ -265,4 +270,44 @@ function getComments($gridId): array
     $result = $mysqli->query($query);
     return mysqli_fetch_all($result);
 
+}
+function getChatsOfUserId($userId): array
+{
+    global $mysqli;
+    $query = sprintf("SELECT chatsdata FROM CHATS WHERE user1id=%d OR user2id=%d",$userId);
+    $result = $mysqli->query($query);
+    return mysqli_fetch_all($result);
+}
+function getChatById($chatId){
+    global $mysqli;
+    $query = sprintf("SELECT chatsdata FROM CHATS WHERE idCHATS=%d",$chatId);
+    $result = $mysqli->query($query);
+    return mysqli_fetch_assoc($result);
+}
+//syntax for chat strings : user:string -> asdf: Hello
+function addChatMsg($chatId,$newChatString,$userid){
+    global $mysqli;
+    $chat = getChatById($chatId);
+    $newChatJSON = json_encode($newChatString);
+    $chat .= $newChatJSON;
+    $query = sprintf("UPDATE CHATS SET chatsdata=%d WHERE idCHATS=%s",$chat,$chatId);
+    return $mysqli->query($query);
+}
+function newChat($user1id,$user2id){
+    global $mysqli;
+    $users = [$user1id,$user2id];
+    $usersJSON = json_encode($users);
+    $query = sprintf("INSERT INTO CHATS (users) VALUES(%a)",$usersJSON);
+     $mysqli->query($query);
+     $query2 = sprintf("SELECT idCHATS FROM CHATS WHERE users=%d",$usersJSON);
+     return mysqli_fetch_assoc($mysqli->query($query2));
+}
+function getChatsByUserIds($userid1,$userid2): array
+{
+    global $mysqli;
+    $users = [$userid1,$userid2];
+    $usersJSON = json_encode($users);
+    $query = sprintf("SELECT * FROM CHATS WHERE users='%d'",$usersJSON);
+    $result = $mysqli->query($query);
+    return mysqli_fetch_all($result);
 }
