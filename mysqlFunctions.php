@@ -2,8 +2,8 @@
 session_start();
 
 $dbhost = 'db5011366642.hosting-data.io';
-$dbuser = "dbs9593474";
-$dbname = 'dbu1596496';
+$dbname = "dbs9593474";
+$dbuser = 'dbu1596496';
 $dbpasswd = "IonosPass123!";
 $mysqli = new mysqli($dbhost, $dbuser, $dbpasswd, $dbname) or die("Connect failed: %s\n" . $mysqli->error);
 
