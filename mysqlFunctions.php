@@ -43,10 +43,10 @@ function login($usrname, $passwd)
         if ($row["usrname"] === $usrname && $row["passwd"] === $passwd) {
             $_SESSION["usrname"] = $usrname;
             $_SESSION["userid"] = $row["id"];
-            header("Location:logged.php");
+            return true;
         }
     } else {
-        return "wrong password or usrname";
+        return false;
     }
 }
 

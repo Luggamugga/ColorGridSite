@@ -1,6 +1,12 @@
 <?php
 if(!empty($_POST["usrname"])){
-    echo login($_POST["usrname"],$_POST["passwd"]);
+    if (login($_POST["usrname"],$_POST["passwd"])){
+        header("location:logged.php");
+    } else {
+        echo "wrong username or password";
+    }
+
+
 }
 ?>
 <?php include "header.php" ?>
