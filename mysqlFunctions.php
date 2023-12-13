@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-$dbhost = 'localhost';
-$dbuser = "root";
-$dbname = 'gridDb';
-$dbpasswd = "asdf";
+$dbhost = 'db5011366642.hosting-data.io';
+$dbuser = "dbs9593474";
+$dbname = 'dbu1596496';
+$dbpasswd = "IonosPass123!";
 $mysqli = new mysqli($dbhost, $dbuser, $dbpasswd, $dbname) or die("Connect failed: %s\n" . $mysqli->error);
 
 function addUser($usrname, $passwd)
@@ -289,7 +289,7 @@ function addChatMsg($chatId,$newChatString,$userid){
     global $mysqli;
     $chat = getChatById($chatId);
     $newChatJSON = json_encode($newChatString);
-    $chat .= $newChatJSON;
+    $chat .= $newChatJSON . ";";
     $query = sprintf("UPDATE CHATS SET chatsdata=%d WHERE idCHATS=%s",$chat,$chatId);
     return $mysqli->query($query);
 }
