@@ -3,7 +3,7 @@ session_start();
 
 
 $databaseCreds = (str_starts_with($_SERVER["HTTP_HOST"] , "localhost")) ? ['localhost', "gridDB", "root", "asdf"]
-    : ["db5011366642.hosting-data.io", "BytesDB", "dbu1596496", "IonosPass123!"];
+    : ["db5011366642.hosting-data.io", "db5011366642", "dbu1596496", "IonosPass123!"];
 
 $dbhost = $databaseCreds[0];
 $dbname = $databaseCreds[1];
