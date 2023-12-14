@@ -1,12 +1,15 @@
 <?php
 session_start();
 
-$dbhost = 'db5011366642.hosting-data.io';
-$dbname = "dbs9593474";
-$dbuser = 'dbu1596496';
-$dbpasswd = "IonosPass123!";
+$dbhost = 'localhost';
+$dbname = "gridDB";
+$dbuser = 'root';
+$dbpasswd = "asdf";
 $mysqli = new mysqli($dbhost, $dbuser, $dbpasswd, $dbname) or die("Connect failed: %s\n" . $mysqli->error);
 
+function _header($location){
+    header("Location:".$location);
+}
 function addUser($usrname, $passwd)
 {
     global $mysqli;
@@ -43,13 +46,32 @@ function login($usrname, $passwd)
         if ($row["usrname"] === $usrname && $row["passwd"] === $passwd) {
             $_SESSION["usrname"] = $usrname;
             $_SESSION["userid"] = $row["id"];
-            return true;
         }
+        echo renderLogged();
     } else {
-        return false;
+        echo "wrong username or password";
+        echo renderLogin();
     }
 }
-
+function renderLogin(){
+    $returnarr[] = "<div class='loginForm'>";
+    $returnarr[] = '<form method="post">
+        <label for="usrname">Username:</label>
+        <input type="text" name="usrname">
+        <label for="passwd">Password:</label>
+        <input type="password" name="passwd">
+        <input type="submit">
+    </form>';
+    $returnarr[] = "</div>";
+    return implode("",$returnarr);
+}
+function renderLogged(): string
+{
+    $returnarr[] = '<div class="Success">';
+    $returnarr[] = "<h1>You've successfully logged in as:" . $_SESSION["usrname"]."</h1></div>";
+    $returnarr[] = '<div class="successNav"><div class="homeLink"><a href="index.php">Home</a></div><div class="createLink"><a href="create.php">Create a grid!</a></div></div>';
+    return implode ("",$returnarr);
+}
 function logout()
 {
     if (isset($_SESSION)) {
