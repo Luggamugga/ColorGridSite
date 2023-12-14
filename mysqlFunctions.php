@@ -1,15 +1,16 @@
 <?php
 session_start();
 
-$dbhost = 'localhost';
-$dbname = "gridDB";
-$dbuser = 'root';
-$dbpasswd = "asdf";
+
+$databaseCreds = (str_starts_with($_SERVER["HTTP_HOST"] , "localhost")) ? ['localhost', "gridDB", "root", "asdf"]
+    : ["db5011366642.hosting-data.io", "BytesDB", "dbu1596496", "IonosPass123!"];
+
+$dbhost = $databaseCreds[0];
+$dbname = $databaseCreds[1];
+$dbuser = $databaseCreds[2];
+$dbpasswd = $databaseCreds[3];
 $mysqli = new mysqli($dbhost, $dbuser, $dbpasswd, $dbname) or die("Connect failed: %s\n" . $mysqli->error);
 
-function _header($location){
-    header("Location:".$location);
-}
 function addUser($usrname, $passwd)
 {
     global $mysqli;
@@ -30,9 +31,11 @@ function checkUserExists($usrname)
         return false;
     }
 }
-function getUserIdByName($username){
+
+function getUserIdByName($username)
+{
     global $mysqli;
-    $query = sprintf("SELECT id FROM user WHERE usrname=%s",$username);
+    $query = sprintf("SELECT id FROM user WHERE usrname=%s", $username);
     return mysqli_fetch_assoc($mysqli->query($query));
 }
 
@@ -53,7 +56,9 @@ function login($usrname, $passwd)
         echo renderLogin();
     }
 }
-function renderLogin(){
+
+function renderLogin()
+{
     $returnarr[] = "<div class='loginForm'>";
     $returnarr[] = '<form method="post">
         <label for="usrname">Username:</label>
@@ -63,15 +68,17 @@ function renderLogin(){
         <input type="submit">
     </form>';
     $returnarr[] = "</div>";
-    return implode("",$returnarr);
+    return implode("", $returnarr);
 }
+
 function renderLogged(): string
 {
     $returnarr[] = '<div class="Success">';
-    $returnarr[] = "<h1>You've successfully logged in as:" . $_SESSION["usrname"]."</h1></div>";
+    $returnarr[] = "<h1>You've successfully logged in as:" . $_SESSION["usrname"] . "</h1></div>";
     $returnarr[] = '<div class="successNav"><div class="homeLink"><a href="index.php">Home</a></div><div class="createLink"><a href="create.php">Create a grid!</a></div></div>';
-    return implode ("",$returnarr);
+    return implode("", $returnarr);
 }
+
 function logout()
 {
     if (isset($_SESSION)) {
@@ -135,8 +142,8 @@ function getAllGrids()
             echo "<a href='index.php?delId=" . $gridId . "'>delete</a>";
             echo "<a href='create.php?gridId=" . $gridId . "'>edit </a>";
         }
-        echo "<div class='viewGrid'><a href='view.php?gridId=".$gridId."'>View</a></div>";
-        echo "<div class='comments'><a href='view.php?gridId=".$gridId."'>View Comments</div>";
+        echo "<div class='viewGrid'><a href='view.php?gridId=" . $gridId . "'>View</a></div>";
+        echo "<div class='comments'><a href='view.php?gridId=" . $gridId . "'>View Comments</div>";
         echo "</div>";
         echo "</div>";
     }
@@ -212,12 +219,13 @@ function addLikes($gridId, $userid)
     $mysqli->query($query2);
 
 }
-function rmLikes($gridId,$userid)
+
+function rmLikes($gridId, $userid)
 {
     global $mysqli;
-    $query = sprintf("UPDATE grids SET likes=likes-1 WHERE id=%d",$gridId);
+    $query = sprintf("UPDATE grids SET likes=likes-1 WHERE id=%d", $gridId);
     $mysqli->query($query);
-    $query2 = sprintf("DELETE FROM likes WHERE UserId=%d AND gridId=%d",$userid,$gridId);
+    $query2 = sprintf("DELETE FROM likes WHERE UserId=%d AND gridId=%d", $userid, $gridId);
     $mysqli->query($query2);
 }
 
@@ -252,11 +260,13 @@ function addDislike($gridId, $userid)
     $mysqli->query($query2);
 
 }
-function rmDislike($gridId,$userid){
+
+function rmDislike($gridId, $userid)
+{
     global $mysqli;
-    $query = sprintf("UPDATE grids SET dislikes=dislikes-1 WHERE id=%d",$gridId);
+    $query = sprintf("UPDATE grids SET dislikes=dislikes-1 WHERE id=%d", $gridId);
     $mysqli->query($query);
-    $query2 = sprintf("DELETE FROM dislikes WHERE UserId=%d AND gridId=%d",$userid,$gridId);
+    $query2 = sprintf("DELETE FROM dislikes WHERE UserId=%d AND gridId=%d", $userid, $gridId);
     $mysqli->query($query2);
 }
 
@@ -272,7 +282,7 @@ function showDislikes($gridId)
 function checkIfUsrDisliked($gridId, $userid)
 {
     global $mysqli;
-    $query = sprintf("SELECT id FROM dislikes WHERE UserId=%d AND gridId=%d", $userid,$gridId);
+    $query = sprintf("SELECT id FROM dislikes WHERE UserId=%d AND gridId=%d", $userid, $gridId);
     $result = $mysqli->query($query);
     if (mysqli_num_rows($result) > 0) {
         return true;
@@ -280,56 +290,67 @@ function checkIfUsrDisliked($gridId, $userid)
         return false;
     }
 }
-function addComment($comment,$gridId,$userid){
+
+function addComment($comment, $gridId, $userid)
+{
     global $mysqli;
-    $query = sprintf("INSERT INTO comments (gridId,UserId,Comment) VALUES(%d,%d,'%s')",$gridId,$userid,$comment);
+    $query = sprintf("INSERT INTO comments (gridId,UserId,Comment) VALUES(%d,%d,'%s')", $gridId, $userid, $comment);
     $mysqli->query($query);
 }
+
 function getComments($gridId): array
 {
     global $mysqli;
-    $query = sprintf("SELECT * FROM Comments WHERE gridId=%d",$gridId);
+    $query = sprintf("SELECT * FROM Comments WHERE gridId=%d", $gridId);
     $result = $mysqli->query($query);
     return mysqli_fetch_all($result);
 
 }
+
 function getChatsOfUserId($userId): array
 {
     global $mysqli;
-    $query = sprintf("SELECT chatsdata FROM CHATS WHERE user1id=%d OR user2id=%d",$userId);
+    $query = sprintf("SELECT chatsdata FROM CHATS WHERE user1id=%d OR user2id=%d", $userId);
     $result = $mysqli->query($query);
     return mysqli_fetch_all($result);
 }
-function getChatById($chatId){
+
+function getChatById($chatId)
+{
     global $mysqli;
-    $query = sprintf("SELECT chatsdata FROM CHATS WHERE idCHATS=%d",$chatId);
+    $query = sprintf("SELECT chatsdata FROM CHATS WHERE idCHATS=%d", $chatId);
     $result = $mysqli->query($query);
     return mysqli_fetch_assoc($result);
 }
+
 //syntax for chat strings : user:string -> asdf: Hello
-function addChatMsg($chatId,$newChatString,$userid){
+function addChatMsg($chatId, $newChatString, $userid)
+{
     global $mysqli;
     $chat = getChatById($chatId);
     $newChatJSON = json_encode($newChatString);
     $chat .= $newChatJSON . ";";
-    $query = sprintf("UPDATE CHATS SET chatsdata=%d WHERE idCHATS=%s",$chat,$chatId);
+    $query = sprintf("UPDATE CHATS SET chatsdata=%d WHERE idCHATS=%s", $chat, $chatId);
     return $mysqli->query($query);
 }
-function newChat($user1id,$user2id){
-    global $mysqli;
-    $users = [$user1id,$user2id];
-    $usersJSON = json_encode($users);
-    $query = sprintf("INSERT INTO CHATS (users) VALUES(%a)",$usersJSON);
-     $mysqli->query($query);
-     $query2 = sprintf("SELECT idCHATS FROM CHATS WHERE users=%d",$usersJSON);
-     return mysqli_fetch_assoc($mysqli->query($query2));
-}
-function getChatsByUserIds($userid1,$userid2): array
+
+function newChat($user1id, $user2id)
 {
     global $mysqli;
-    $users = [$userid1,$userid2];
+    $users = [$user1id, $user2id];
     $usersJSON = json_encode($users);
-    $query = sprintf("SELECT * FROM CHATS WHERE users='%d'",$usersJSON);
+    $query = sprintf("INSERT INTO CHATS (users) VALUES(%a)", $usersJSON);
+    $mysqli->query($query);
+    $query2 = sprintf("SELECT idCHATS FROM CHATS WHERE users=%d", $usersJSON);
+    return mysqli_fetch_assoc($mysqli->query($query2));
+}
+
+function getChatsByUserIds($userid1, $userid2): array
+{
+    global $mysqli;
+    $users = [$userid1, $userid2];
+    $usersJSON = json_encode($users);
+    $query = sprintf("SELECT * FROM CHATS WHERE users='%d'", $usersJSON);
     $result = $mysqli->query($query);
     return mysqli_fetch_all($result);
 }
