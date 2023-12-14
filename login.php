@@ -16,8 +16,12 @@ function renderLogin(){
     $returnarr[] = "</div>";
     return implode("",$returnarr);
 }
-function renderLogged(){
-    return include "logged.php";
+function renderLogged(): string
+{
+    $returnarr[] = '<div class="Success">';
+    $returnarr[] = "<h1>You've successfully logged in as:" . $_SESSION["usrname"]."</h1></div>";
+    $returnarr[] = '<div class="successNav"><div class="homeLink"><a href="index.php">Home</a></div><div class="createLink"><a href="create.php">Create a grid!</a></div></div>';
+    return implode ("",$returnarr);
 }
 if(!empty($_POST["usrname"])){
     if (login($_POST["usrname"],$_POST["passwd"])){
