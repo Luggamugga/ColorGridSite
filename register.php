@@ -1,5 +1,7 @@
-<?php include "header.php"
-?>
+<?php
+include "header.php";
+include "mysqlFunctions.php"; ?>
+
 <div class="formHeader">Register a new Account</div>
 <div class="registForm">
     <form method="post">
@@ -11,19 +13,17 @@
     </form>
 </div>
 <?php
-if(isset($_POST["usrName"])):
-if(isset($_SESSION["usrname"]))
-{
-    echo "your're already logged in and registered";
-    return;
-} elseif(checkUserExists($_POST["usrName"])){
-     echo "that usrname is taken!";
-     return;
-}
-else {
-    addUser($_POST["usrName"],$_POST["passwd"]);
-    header("Location: regSuccess.php");
-}
+if (isset($_POST["usrName"])):
+    if (isset($_SESSION["usrname"])) {
+        echo "your're already logged in and registered";
+        return;
+    } elseif (checkUserExists($_POST["usrName"])) {
+        echo "that usrname is taken!";
+        return;
+    } else {
+        addUser($_POST["usrName"], $_POST["passwd"]);
+        header("Location: regSuccess.php");
+    }
 endif;
 ?>
-<?php include "footer.php"?>
+<?php include "footer.php" ?>

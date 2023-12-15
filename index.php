@@ -1,11 +1,14 @@
 
 <?php
-include "header.php";
+include "mysqlFunctions.php";
 if(isset($_GET["delId"])){
     deleteGrid($_GET["delId"]);
     header("Location: index.php");
     echo "deleted";
-}?>
+}
+include "header.php";
+?>
+
 <script>
     document.addEventListener("DOMContentLoaded", function(event) {
         let scrollpos = localStorage.getItem('scrollpos');

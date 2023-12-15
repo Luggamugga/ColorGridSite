@@ -1,4 +1,7 @@
-<?php include "header.php" ?>
+<?php
+include "mysqlFunctions.php";
+include "header.php" ;
+?>
 <div id="grid">
     <?php
     $row;

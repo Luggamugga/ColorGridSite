@@ -1,4 +1,3 @@
-<?php     include "mysqlFunctions.php";?>
 <!DOCTYPE html>
 <html lang="en/EN">
 <head>
@@ -13,7 +12,7 @@
         <li class="HomeNav"><a href="index.php">Home</li>
         <li class="createNav"><a href="create.php">Create a Grid!</a></li>
         <li class="chessNav"><a href="chess.php">Chess</a></li>
-        <li class="chatNav"><a href="anonchat.php">Chat</a></li>
+      <!--  <li class="chatNav"><a href="anonchat.php">Chat</a></li>--!>
         <?php if(isset($_SESSION["userid"])):?>
         <li class="PersonalNav"><a href="Profile.php?usr=<?=$_SESSION['userid'] ?>">My Page</a></li>
         <?php endif;?>

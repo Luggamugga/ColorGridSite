@@ -51,6 +51,7 @@ function login($usrname, $passwd)
             $_SESSION["userid"] = $row["id"];
         }
         echo renderLogged();
+        print_r($_SESSION);
     } else {
         echo "wrong username or password";
         echo renderLogin();

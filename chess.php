@@ -1,4 +1,5 @@
 <?php
+include "mysqlFunctions.php";
 include "header.php";
 ?>
 <link rel="stylesheet" href="chessStyle.css">

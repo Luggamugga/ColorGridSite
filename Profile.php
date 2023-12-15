@@ -1,4 +1,7 @@
-<?php include "header.php";?>
+<?php
+include "mysqlFunctions.php";
+ include "header.php";
+ ?>
 <div class="profTitle">
     <?php if ($_SESSION["userid"] == $_GET["usr"]){
         echo "Your Profile";

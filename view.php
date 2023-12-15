@@ -1,5 +1,5 @@
 <?php
-//include "mysqlFunctions.php";
+include "mysqlFunctions.php";
 include "header.php";
 if(isset($_POST["commentString"])){
     addComment($_POST["commentString"],$_POST["gridId"],$_SESSION["userid"]);
