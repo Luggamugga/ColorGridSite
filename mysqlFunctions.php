@@ -1,10 +1,7 @@
 <?php
 session_start();
-
-
-$databaseCreds = (str_starts_with($_SERVER["HTTP_HOST"] , "localhost")) ? ['localhost', "gridDB", "root", "asdf"]
-    : ["db5011366642.hosting-data.io", "db5011366642", "dbu1596496", "IonosPass123!"];
-
+require_once "sql_cred.php";
+$databaseCreds = returnDBCreds();
 $dbhost = $databaseCreds[0];
 $dbname = $databaseCreds[1];
 $dbuser = $databaseCreds[2];
@@ -132,14 +129,14 @@ function getAllGrids()
         $usrname = getUserbyId($row["userId"]);
         $userid = $row["userId"];
         $gridId = $row["id"];
-        $sessUsrId = $_SESSION["userid"];
+        $sessUsrId = $_SESSION["userid"] ?? null;
         echo "</div>";
         echo "<div class='gridSubtxt'>";
         echo "<div class='usrnameHome'> By User: ";
         echo "<a href='profile.php?usr=" . $userid . "'>" . $usrname . "</a></div>";
         echo "<div class='timestamp'>Created: " . $row["time"] . "</div>";
         include "likes.php";
-        if ($_SESSION["userid"] == $userid) {
+        if ($_SESSION["userid"] ?? "" == $userid) {
             echo "<a href='index.php?delId=" . $gridId . "'>delete</a>";
             echo "<a href='create.php?gridId=" . $gridId . "'>edit </a>";
         }
