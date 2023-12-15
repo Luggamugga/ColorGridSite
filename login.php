@@ -1,6 +1,6 @@
 <?php
-include "header.php";
 include "mysqlFunctions.php";
+include "header.php";
 $logged = false;
 if(!empty($_POST["usrname"])){
     login($_POST["usrname"],$_POST["passwd"]);

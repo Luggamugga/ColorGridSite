@@ -1,4 +1,3 @@
-
 <?php
 include "mysqlFunctions.php";
 if(isset($_GET["delId"])){

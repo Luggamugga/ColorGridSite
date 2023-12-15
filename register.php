@@ -1,6 +1,7 @@
 <?php
+include "mysqlFunctions.php";
 include "header.php";
-include "mysqlFunctions.php"; ?>
+ ?>
 
 <div class="formHeader">Register a new Account</div>
 <div class="registForm">
