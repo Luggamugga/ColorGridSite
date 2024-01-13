@@ -1,7 +1,6 @@
 <?php
 include "mysqlFunctions.php";
 include "header.php";
-$logged = false;
 if(!empty($_POST["usrname"])){
     login($_POST["usrname"],$_POST["passwd"]);
     unset($_POST);
@@ -9,6 +8,8 @@ if(!empty($_POST["usrname"])){
     echo renderLogin();
 
 }
+
+$logged = false;
 
 ?>
 <?php include "footer.php" ?>
