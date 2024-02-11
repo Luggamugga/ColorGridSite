@@ -35,9 +35,8 @@ $comments = getComments($_GET["gridId"]);
     <div class="addCommentContainer">
         <form class="addCommentForm" method="post">
             <input type="hidden" name="gridId" value="<?= $_GET["gridId"]?>">
-            <label for="commentString">Your Comment:
-                <textarea name="commentString"></textarea>
-            </label>
+            <label for="commentString">Your Comment: </label>
+            <textarea name="commentString"></textarea>
             <button type="submit" name="submit">Add Comment</button>
         </form>
     </div>
